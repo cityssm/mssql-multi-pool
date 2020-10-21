@@ -1,5 +1,9 @@
 # mssql-multi-pool
 
+[![npm](https://badgen.net/npm/v/@cityssm/mssql-multi-pool)](https://www.npmjs.com/package/@cityssm/mssql-multi-pool)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/19dbca72690940f69b2b96fe045575db)](https://www.codacy.com/gh/cityssm/mssql-multi-pool/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cityssm/mssql-multi-pool&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9796c8879e5341d9a1b0/maintainability)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability)
+
 A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.
 
 ## Why?
