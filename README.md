@@ -12,6 +12,12 @@ Not too tricky, but it is more involved as you can't rely on the global pool.
 There is some sample code in the [node-mssql README](https://github.com/tediousjs/node-mssql) that shows how to do it.
 This project implements that sample code.
 
+## Installation
+
+```bash
+npm install @cityssm/mssql-multi-pool
+```
+
 ## Usage
 
 Replace the `connect(config);` command from the `mssql` package
