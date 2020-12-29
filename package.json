@@ -1,10 +1,9 @@
 {
   "name": "@cityssm/mssql-multi-pool",
-  "version": "1.1.0",
+  "version": "1.2.0-beta.0",
   "description": "A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cityssm/mssql-multi-pool.git"
@@ -13,7 +12,8 @@
     "mssql",
     "node-mssql",
     "tedious",
-    "connection-pool"
+    "connection-pool",
+    "sql-server"
   ],
   "author": "The Corporation of the City of Sault Ste. Marie",
   "license": "MIT",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/cityssm/mssql-multi-pool#readme",
   "dependencies": {
-    "mssql": "^6.3.0"
+    "mssql": "^7.0.0-alpha.3"
   },
   "devDependencies": {
     "@types/mssql": "^6.0.7",
