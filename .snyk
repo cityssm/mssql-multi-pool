@@ -1,9 +1,0 @@
-# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.14.1
-# ignores vulnerabilities until expiry date; change duration by modifying expiry date
-ignore:
-  SNYK-JS-AXIOS-1038255:
-    - mssql > tedious > @azure/ms-rest-nodeauth > @azure/ms-rest-js > axios:
-        reason: Acknowledged
-        expires: '2021-01-10T16:58:33.080Z'
-patch: {}
