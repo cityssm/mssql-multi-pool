@@ -6,6 +6,7 @@ node_modules
 test
 
 .atomignore
+.codeclimate.yml
 .eslintrc.js
 .gitignore
 .npmignore
