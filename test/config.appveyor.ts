@@ -9,11 +9,5 @@ import type { config as ConnectionPoolConfig } from "mssql";
 export const config: ConnectionPoolConfig = {
   "user": "SA",
   "password": "Password12!",
-  "server": "localhost",
-  "options": {
-    "encrypt": false,
-    "enableArithAbort": true,
-    "useUTC": false,
-    "trustedConnection": true
-  }
+  "server": "localhost"
 };
