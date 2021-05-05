@@ -1,6 +1,6 @@
 # mssql-multi-pool
 
-[![npm](https://img.shields.io/npm/v/@cityssm/mssql-multi-pool)](https://www.npmjs.com/package/@cityssm/mssql-multi-pool) [![Codacy Badge](https://img.shields.io/codacy/grade/19dbca72690940f69b2b96fe045575db)](https://www.codacy.com/gh/cityssm/mssql-multi-pool/dashboard) [![Maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/mssql-multi-pool)
+[![npm](https://img.shields.io/npm/v/@cityssm/mssql-multi-pool)](https://www.npmjs.com/package/@cityssm/mssql-multi-pool) [![Codacy Badge](https://img.shields.io/codacy/grade/19dbca72690940f69b2b96fe045575db)](https://www.codacy.com/gh/cityssm/mssql-multi-pool/dashboard) [![Maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability) [![Code Climate coverage](https://img.shields.io/codeclimate/coverage/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/mssql-multi-pool)
 
 A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.
 
