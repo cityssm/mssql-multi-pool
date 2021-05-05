@@ -24,9 +24,10 @@ before_test:
   # Download codeclimate test report
   - sh: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./codeclimate-test-reporter
   - sh: chmod +x ./codeclimate-test-reporter
+  # Ensure SQL Server is up and running
+  - sqlcmd -S localhost -U SA -P Password12! -Q 'select @@VERSION'
 
 test_script:
-  - sqlcmd -S localhost -U SA -P Password12! -Q 'select @@VERSION'
   - c8 --reporter=lcov mocha --timeout 30000
 
 after_test:
