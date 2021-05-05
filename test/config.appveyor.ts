@@ -10,5 +10,8 @@ export const config: ConnectionPoolConfig = {
   "user": "SA",
   "password": "Password12!",
   "server": "localhost",
-  "database": "master"
+  "database": "master",
+  "options": {
+    "encrypt": false
+  }
 };
