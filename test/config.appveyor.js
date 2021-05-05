@@ -4,5 +4,6 @@ exports.config = void 0;
 exports.config = {
     "user": "SA",
     "password": "Password12!",
-    "server": "localhost"
+    "server": "localhost",
+    "database": "master"
 };
