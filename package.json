@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/mssql-multi-pool",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.",
   "main": "index.js",
   "scripts": {
@@ -27,18 +27,16 @@
   "devDependencies": {
     "@types/mocha": "^8.2.2",
     "@types/mssql": "^6.0.8",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "c8": "^7.7.2",
-    "eslint": "^7.25.0",
+    "eslint": "^7.28.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "mocha": "^8.4.0",
-    "typescript": "^4.2.4"
+    "eslint-plugin-promise": "^5.1.0"
   },
   "dependencies": {
-    "mssql": "^7.0.0"
+    "mssql": "^7.1.1"
   }
 }
