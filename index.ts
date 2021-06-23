@@ -2,7 +2,7 @@ import { ConnectionPool } from "mssql";
 import type { config as ConnectionPoolConfig } from "mssql";
 
 import debug from "debug";
-const debugSQL = debug("mssql-multi-pool");
+const debugSQL = debug("mssql-multi-pool:index");
 
 
 const POOLS: { [poolKey: string]: ConnectionPool } = {};
@@ -59,7 +59,7 @@ export const connect = async (config: ConnectionPoolConfig) => {
 
 export const releaseAll = () => {
 
-  debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length + " pools.");
+  debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length.toString() + " pools.");
 
   for (const poolKey of Object.getOwnPropertyNames(POOLS)) {
 

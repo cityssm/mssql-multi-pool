@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.releaseAll = exports.connect = void 0;
 const mssql_1 = require("mssql");
 const debug_1 = require("debug");
-const debugSQL = debug_1.default("mssql-multi-pool");
+const debugSQL = debug_1.default("mssql-multi-pool:index");
 const POOLS = {};
 const getPoolKey = (config) => {
     var _a;
@@ -36,7 +36,7 @@ const connect = async (config) => {
 };
 exports.connect = connect;
 const releaseAll = () => {
-    debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length + " pools.");
+    debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length.toString() + " pools.");
     for (const poolKey of Object.getOwnPropertyNames(POOLS)) {
         debugSQL("Releasing pool: " + poolKey);
         POOLS[poolKey].close().catch();

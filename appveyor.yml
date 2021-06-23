@@ -30,7 +30,7 @@ before_test:
 
 test_script:
   # Do actual test
-  - cross-env NODE_ENV=dev DEBUG=mssql-multi-pool c8 --reporter=lcov mocha --timeout 30000
+  - cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* c8 --reporter=lcov mocha --timeout 30000
 
 after_test:
   # Send test result to codeclimate

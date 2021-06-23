@@ -3,22 +3,25 @@ import * as mssqlMultiPool from "../index.js";
 
 import type { config as ConnectionPoolConfig } from "mssql";
 
+import debug from "debug";
+const debugTest = debug("mssql-multi-pool:test");
+
 
 let configFile: { config: ConnectionPoolConfig };
 
 try {
   configFile = require("./config.local.js");
-  console.log("Using config.local.js");
+  debugTest("Using config.local.js");
 } catch (_e) {
   configFile = require("./config.appveyor.js");
-  console.log("Using config.appveyor.js");
+  debugTest("Using config.appveyor.js");
 }
 
 
 describe("mssql-multi-pool", () => {
 
-  after(async () => {
-    await mssqlMultiPool.releaseAll();
+  after(() => {
+    mssqlMultiPool.releaseAll();
   });
 
   it("Connects to database", async () => {
