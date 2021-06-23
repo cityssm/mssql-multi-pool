@@ -13,11 +13,9 @@ services:
   - mssql
 
 install:
-  # Output useful info for debugging.
-  - node --version
-  - npm --version
+  - npm install -g npm@7
   # install modules
-  - sh: npm install
+  - sh: npm ci
   - sh: npm install -g mocha c8 cross-env
 
 before_test:
