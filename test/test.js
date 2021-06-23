@@ -21,4 +21,10 @@ describe("mssql-multi-pool", () => {
             .query("select 1");
         assert.ok(true);
     });
+    it("Connects to database again", async () => {
+        const pool = await mssqlMultiPool.connect(configFile.config);
+        await pool.request()
+            .query("select 1");
+        assert.ok(true);
+    });
 });

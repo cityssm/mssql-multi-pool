@@ -1,6 +1,9 @@
 import { ConnectionPool } from "mssql";
 import type { config as ConnectionPoolConfig } from "mssql";
 
+import debug from "debug";
+const debugSQL = debug("mssql-multi-pool");
+
 
 const POOLS: { [poolKey: string]: ConnectionPool } = {};
 
@@ -25,6 +28,9 @@ export const connect = async (config: ConnectionPoolConfig) => {
   let pool = POOLS[poolKey];
 
   if (!pool || !pool.connected) {
+
+    debugSQL("New database connection: " + poolKey);
+
     pool = await (new ConnectionPool(config)).connect();
     POOLS[poolKey] = pool;
   }
@@ -32,6 +38,8 @@ export const connect = async (config: ConnectionPoolConfig) => {
   if (!shutdownInitialized) {
 
     if (process) {
+
+      debugSQL("Initializing shutdown hooks.");
 
       const shutdownEvents = ["beforeExit", "exit", "SIGINT", "SIGTERM"];
 
@@ -49,11 +57,15 @@ export const connect = async (config: ConnectionPoolConfig) => {
 };
 
 
-export const releaseAll = async (): Promise<void> => {
+export const releaseAll = () => {
+
+  debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length + " pools.");
 
   for (const poolKey of Object.getOwnPropertyNames(POOLS)) {
 
-    await POOLS[poolKey].close().catch();
+    debugSQL("Releasing pool: " + poolKey);
+
+    POOLS[poolKey].close().catch();
 
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete POOLS[poolKey];
