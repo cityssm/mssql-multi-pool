@@ -1,9 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const assert = require("assert");
-const mssqlMultiPool = require("../index.js");
-const debug_1 = require("debug");
-const debugTest = debug_1.default("mssql-multi-pool:test");
+import assert from "assert";
+import * as mssqlMultiPool from "../index.js";
+import debug from "debug";
+const debugTest = debug("mssql-multi-pool:test");
 let configFile;
 try {
     configFile = require("./config.local.js");

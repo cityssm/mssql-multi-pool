@@ -14,7 +14,7 @@ const getPoolKey = (config: ConnectionPoolConfig) => {
     "@" +
     config.server +
     "/" +
-    (config.options?.instanceName || "");
+    (config.options ?.instanceName || "");
 };
 
 
