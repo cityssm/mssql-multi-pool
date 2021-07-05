@@ -1,14 +1,13 @@
-import { ConnectionPool } from "mssql";
-import type { config as ConnectionPoolConfig } from "mssql";
+import mssql from "mssql";
 
 import debug from "debug";
 const debugSQL = debug("mssql-multi-pool:index");
 
 
-const POOLS: { [poolKey: string]: ConnectionPool } = {};
+const POOLS: { [poolKey: string]: mssql.ConnectionPool } = {};
 
 
-const getPoolKey = (config: ConnectionPoolConfig) => {
+const getPoolKey = (config: mssql.config) => {
 
   return (config.user || "") +
     "@" +
@@ -21,7 +20,7 @@ const getPoolKey = (config: ConnectionPoolConfig) => {
 let shutdownInitialized = false;
 
 
-export const connect = async (config: ConnectionPoolConfig) => {
+export const connect = async (config: mssql.config) => {
 
   const poolKey = getPoolKey(config);
 
@@ -31,7 +30,7 @@ export const connect = async (config: ConnectionPoolConfig) => {
 
     debugSQL("New database connection: " + poolKey);
 
-    pool = await (new ConnectionPool(config)).connect();
+    pool = await (new mssql.ConnectionPool(config)).connect();
     POOLS[poolKey] = pool;
   }
 

@@ -1,16 +1,6 @@
 import assert from "assert";
 import * as mssqlMultiPool from "../index.js";
-import debug from "debug";
-const debugTest = debug("mssql-multi-pool:test");
-let configFile;
-try {
-    configFile = require("./config.local.js");
-    debugTest("Using config.local.js");
-}
-catch (_e) {
-    configFile = require("./config.appveyor.js");
-    debugTest("Using config.appveyor.js");
-}
+import * as configFile from "./config.test.js";
 describe("mssql-multi-pool", () => {
     after(() => {
         mssqlMultiPool.releaseAll();

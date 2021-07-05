@@ -1,4 +1,4 @@
-import { ConnectionPool } from "mssql";
+import mssql from "mssql";
 import debug from "debug";
 const debugSQL = debug("mssql-multi-pool:index");
 const POOLS = {};
@@ -16,7 +16,7 @@ export const connect = async (config) => {
     let pool = POOLS[poolKey];
     if (!pool || !pool.connected) {
         debugSQL("New database connection: " + poolKey);
-        pool = await (new ConnectionPool(config)).connect();
+        pool = await (new mssql.ConnectionPool(config)).connect();
         POOLS[poolKey] = pool;
     }
     if (!shutdownInitialized) {

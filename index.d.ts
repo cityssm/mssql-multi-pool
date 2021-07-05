@@ -1,4 +1,3 @@
-import { ConnectionPool } from "mssql";
-import type { config as ConnectionPoolConfig } from "mssql";
-export declare const connect: (config: ConnectionPoolConfig) => Promise<ConnectionPool>;
+import mssql from "mssql";
+export declare const connect: (config: mssql.config) => Promise<mssql.ConnectionPool>;
 export declare const releaseAll: () => void;
