@@ -56,7 +56,7 @@ export const connect = async (config: mssql.config): Promise<mssql.ConnectionPoo
 };
 
 
-export const releaseAll = () => {
+export const releaseAll = (): void => {
 
   debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length.toString() + " pools.");
 
