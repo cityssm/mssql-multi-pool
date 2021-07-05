@@ -27,7 +27,7 @@ before_test:
   - sqlcmd -S localhost -U SA -P Password12! -Q 'select @@VERSION'
 
 test_script:
-  - cp ./test/config.appyeyor.js ./test/config.test.js
+  - cp ./test/config.appveyor.js ./test/config.test.js
   # Do actual test
   - cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* c8 --reporter=lcov mocha --timeout 30000
 

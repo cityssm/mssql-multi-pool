@@ -20,7 +20,7 @@ const getPoolKey = (config: mssql.config) => {
 let shutdownInitialized = false;
 
 
-export const connect = async (config: mssql.config) => {
+export const connect = async (config: mssql.config): Promise<mssql.ConnectionPool> => {
 
   const poolKey = getPoolKey(config);
 
