@@ -21,7 +21,7 @@ This project implements that sample code.
 
 ## Installation
 
-```bash
+```sh
 npm install @cityssm/mssql-multi-pool
 ```
 
