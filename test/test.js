@@ -9,12 +9,17 @@ describe("mssql-multi-pool", () => {
         const pool = await mssqlMultiPool.connect(configFile.config);
         await pool.request()
             .query("select 1");
-        assert.ok(true);
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), 1);
     });
     it("Connects to database again", async () => {
+        const poolCountStart = mssqlMultiPool.getPoolCount();
         const pool = await mssqlMultiPool.connect(configFile.config);
         await pool.request()
             .query("select 1");
-        assert.ok(true);
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), poolCountStart);
+    });
+    it("Releases all pools", async () => {
+        mssqlMultiPool.releaseAll();
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), 0);
     });
 });

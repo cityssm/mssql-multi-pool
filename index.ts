@@ -5,7 +5,7 @@ import debug from "debug";
 const debugSQL = debug("mssql-multi-pool:index");
 
 
-const POOLS: { [poolKey: string]: mssql.ConnectionPool } = {};
+const POOLS: Map<string, mssql.ConnectionPool> = new Map();
 
 
 const getPoolKey = (config: mssql.config) => {
@@ -25,14 +25,14 @@ export const connect = async (config: mssql.config): Promise<mssql.ConnectionPoo
 
   const poolKey = getPoolKey(config);
 
-  let pool = POOLS[poolKey];
+  let pool = POOLS.get(poolKey);
 
   if (!pool || !pool.connected) {
 
     debugSQL("New database connection: " + poolKey);
 
     pool = await (new mssql.ConnectionPool(config)).connect();
-    POOLS[poolKey] = pool;
+    POOLS.set(poolKey, pool);
   }
 
   if (!shutdownInitialized) {
@@ -51,19 +51,23 @@ export const connect = async (config: mssql.config): Promise<mssql.ConnectionPoo
 
 export const releaseAll = (): void => {
 
-  debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length.toString() + " pools.");
+  debugSQL("Releasing " + POOLS.size.toString() + " pools.");
 
-  for (const poolKey of Object.getOwnPropertyNames(POOLS)) {
+  for (const poolKey of POOLS.keys()) {
 
     debugSQL("Releasing pool: " + poolKey);
 
     try {
-      POOLS[poolKey].close();
+      POOLS.get(poolKey).close();
     } catch {
       // ignore
     }
-
-    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-    delete POOLS[poolKey];
   }
+
+  POOLS.clear();
+};
+
+
+export const getPoolCount = (): number => {
+  return POOLS.size;
 };

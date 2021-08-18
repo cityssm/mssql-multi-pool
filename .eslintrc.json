@@ -30,13 +30,6 @@
         "case": "camelCase"
       }
     ],
-    "unicorn/prefer-node-protocol": "off",
-    "unicorn/prevent-abbreviations": [
-      "error", {
-        "allowList": {
-          "tempAdmin": true
-        }
-      }
-    ]
+    "unicorn/prefer-node-protocol": "off"
   }
 }
