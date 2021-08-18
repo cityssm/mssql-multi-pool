@@ -1,4 +1,5 @@
 import mssql from "mssql";
+import exitHook from "exit-hook";
 import debug from "debug";
 const debugSQL = debug("mssql-multi-pool:index");
 const POOLS = {};
@@ -22,10 +23,7 @@ export const connect = async (config) => {
     if (!shutdownInitialized) {
         if (process) {
             debugSQL("Initializing shutdown hooks.");
-            const shutdownEvents = ["beforeExit", "exit", "SIGINT", "SIGTERM"];
-            for (const shutdownEvent of shutdownEvents) {
-                process.on(shutdownEvent, releaseAll);
-            }
+            exitHook(releaseAll);
         }
         shutdownInitialized = true;
     }
@@ -35,7 +33,11 @@ export const releaseAll = () => {
     debugSQL("Releasing " + Object.getOwnPropertyNames(POOLS).length.toString() + " pools.");
     for (const poolKey of Object.getOwnPropertyNames(POOLS)) {
         debugSQL("Releasing pool: " + poolKey);
-        POOLS[poolKey].close().catch();
+        try {
+            POOLS[poolKey].close();
+        }
+        catch (_a) {
+        }
         delete POOLS[poolKey];
     }
 };

@@ -1,4 +1,5 @@
 import mssql from "mssql";
+import exitHook from "exit-hook";
 
 import debug from "debug";
 const debugSQL = debug("mssql-multi-pool:index");
@@ -37,16 +38,8 @@ export const connect = async (config: mssql.config): Promise<mssql.ConnectionPoo
   if (!shutdownInitialized) {
 
     if (process) {
-
       debugSQL("Initializing shutdown hooks.");
-
-      const shutdownEvents = ["beforeExit", "exit", "SIGINT", "SIGTERM"];
-
-      for (const shutdownEvent of shutdownEvents) {
-
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        process.on(shutdownEvent, releaseAll);
-      }
+      exitHook(releaseAll);
     }
 
     shutdownInitialized = true;
@@ -64,7 +57,11 @@ export const releaseAll = (): void => {
 
     debugSQL("Releasing pool: " + poolKey);
 
-    POOLS[poolKey].close().catch();
+    try {
+      POOLS[poolKey].close();
+    } catch {
+      // ignore
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete POOLS[poolKey];
