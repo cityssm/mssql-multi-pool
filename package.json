@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "debug": "^4.3.2",
-    "exit-hook": "^2.2.1",
+    "exit-hook": "^3.0.0",
     "mssql": "^7.2.0"
   },
   "devDependencies": {
