@@ -9,7 +9,9 @@ const getPoolKey = (config) => {
         "@" +
         config.server +
         "/" +
-        (((_a = config.options) === null || _a === void 0 ? void 0 : _a.instanceName) || "");
+        (((_a = config.options) === null || _a === void 0 ? void 0 : _a.instanceName) || "") +
+        ";" +
+        (config.database || "");
 };
 let shutdownInitialized = false;
 export const connect = async (config) => {

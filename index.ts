@@ -14,7 +14,9 @@ const getPoolKey = (config: mssql.config) => {
     "@" +
     config.server +
     "/" +
-    (config.options ?.instanceName || "");
+    (config.options ?.instanceName || "") +
+    ";" +
+    (config.database || "");
 };
 
 
