@@ -42,7 +42,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.1",
-    "eslint-plugin-unicorn": "^39.0.0"
+    "eslint-plugin-unicorn": "^40.0.0"
   },
   "resolutions": {
     "xmldom": "github:xmldom/xmldom#0.7.0"
