@@ -29,7 +29,7 @@
   "dependencies": {
     "debug": "^4.3.2",
     "exit-hook": "^3.0.0",
-    "mssql": "^7.3.0"
+    "mssql": "^8.0.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
