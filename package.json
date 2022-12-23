@@ -28,21 +28,21 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "exit-hook": "^3.0.0",
-    "mssql": "^8.1.1"
+    "exit-hook": "^3.1.4",
+    "mssql": "^9.0.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
-    "@types/mocha": "^9.1.1",
-    "@types/mssql": "^8.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@types/mocha": "^10.0.1",
+    "@types/mssql": "^8.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.15.0",
+    "eslint": "^8.30.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-unicorn": "^42.0.0"
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unicorn": "^45.0.2"
   },
   "resolutions": {
     "xmldom": "github:xmldom/xmldom#0.7.0"
