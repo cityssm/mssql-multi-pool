@@ -5,13 +5,13 @@ const debugSQL = debug("mssql-multi-pool:index");
 const POOLS = new Map();
 const getPoolKey = (config) => {
     var _a;
-    return (config.user || "") +
+    return ((config.user || "") +
         "@" +
         config.server +
         "/" +
         (((_a = config.options) === null || _a === void 0 ? void 0 : _a.instanceName) || "") +
         ";" +
-        (config.database || "");
+        (config.database || ""));
 };
 let shutdownInitialized = false;
 export const connect = async (config) => {
@@ -19,7 +19,7 @@ export const connect = async (config) => {
     let pool = POOLS.get(poolKey);
     if (!pool || !pool.connected) {
         debugSQL("New database connection: " + poolKey);
-        pool = await (new mssql.ConnectionPool(config)).connect();
+        pool = await new mssql.ConnectionPool(config).connect();
         POOLS.set(poolKey, pool);
     }
     if (!shutdownInitialized) {

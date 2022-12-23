@@ -1,41 +1,34 @@
 import assert from "assert";
 import * as mssqlMultiPool from "../index.js";
 
-
 import * as configFile from "./config.test.js";
 
-
 describe("mssql-multi-pool", () => {
+    after(() => {
+        mssqlMultiPool.releaseAll();
+    });
 
-  after(() => {
-    mssqlMultiPool.releaseAll();
-  });
+    it("Connects to database", async () => {
+        const pool = await mssqlMultiPool.connect(configFile.config);
 
-  it("Connects to database", async () => {
-    const pool = await mssqlMultiPool.connect(configFile.config);
+        await pool.request().query("select 1");
 
-    await pool.request()
-      .query("select 1");
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), 1);
+    });
 
-    assert.strictEqual(mssqlMultiPool.getPoolCount(), 1);
-  });
+    it("Connects to database again", async () => {
+        const poolCountStart = mssqlMultiPool.getPoolCount();
 
-  it("Connects to database again", async () => {
+        const pool = await mssqlMultiPool.connect(configFile.config);
 
-    const poolCountStart = mssqlMultiPool.getPoolCount();
+        await pool.request().query("select 1");
 
-    const pool = await mssqlMultiPool.connect(configFile.config);
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), poolCountStart);
+    });
 
-    await pool.request()
-      .query("select 1");
+    it("Releases all pools", async () => {
+        mssqlMultiPool.releaseAll();
 
-    assert.strictEqual(mssqlMultiPool.getPoolCount(), poolCountStart);
-  });
-
-  it("Releases all pools", async () => {
-
-    mssqlMultiPool.releaseAll();
-
-    assert.strictEqual(mssqlMultiPool.getPoolCount(), 0);
-  });
+        assert.strictEqual(mssqlMultiPool.getPoolCount(), 0);
+    });
 });
