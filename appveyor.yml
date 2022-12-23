@@ -7,7 +7,7 @@ environment:
   CC_TEST_REPORTER_ID:
     secure: Vtg4JQKVdapwAqtAiLDemz3arwOFAfyDPzJTCpjhjBqkQPJNuuwiRImi6qpg6MY3mf54W5kxu+/jUI8vUGwWkvVDwHPRvmsA14omK58YeiU=
 
-stack: "node 18"
+stack: "node 16"
 
 services:
   - mssql
