@@ -7,13 +7,12 @@ environment:
   CC_TEST_REPORTER_ID:
     secure: Vtg4JQKVdapwAqtAiLDemz3arwOFAfyDPzJTCpjhjBqkQPJNuuwiRImi6qpg6MY3mf54W5kxu+/jUI8vUGwWkvVDwHPRvmsA14omK58YeiU=
 
-stack: "node 14"
+stack: "node 18"
 
 services:
   - mssql
 
 install:
-  - npm install -g npm@8
   # install modules
   - sh: npm ci
   - sh: npm install -g mocha c8 cross-env
