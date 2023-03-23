@@ -44,9 +44,6 @@
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-unicorn": "^46.0.0"
     },
-    "resolutions": {
-        "xmldom": "github:xmldom/xmldom#0.7.0"
-    },
     "engines": {
         "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
     }
