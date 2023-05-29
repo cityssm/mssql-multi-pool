@@ -2,13 +2,13 @@ import type { config as ConnectionPoolConfig } from "mssql";
 
 /*
  * SECRETS OK!
- * https://www.appveyor.com/docs/getting-started-with-appveyor-for-linux/#sql-server-2017-for-linux
+ * https://github.com/potatoqualitee/mssqlsuite
  */
 
 export const config: ConnectionPoolConfig = {
-    user: "SA",
-    password: "Password12!",
     server: "localhost",
+    user: "sa",
+    password: "dbatools.I0",
     database: "master",
     options: {
         encrypt: false

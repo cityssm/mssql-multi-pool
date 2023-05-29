@@ -1,65 +1,67 @@
-import mssql from "mssql";
-import exitHook from "exit-hook";
+import debug from 'debug'
+import exitHook from 'exit-hook'
+import mssql from 'mssql'
 
-import debug from "debug";
-const debugSQL = debug("mssql-multi-pool:index");
+const debugSQL = debug('mssql-multi-pool:index')
 
-const POOLS: Map<string, mssql.ConnectionPool> = new Map();
+const POOLS: Map<string, mssql.ConnectionPool> = new Map()
 
 const getPoolKey = (config: mssql.config) => {
-    return (
-        (config.user || "") +
-        "@" +
-        config.server +
-        "/" +
-        (config.options?.instanceName || "") +
-        ";" +
-        (config.database || "")
-    );
-};
+  return (
+    (config.user || '') +
+    '@' +
+    config.server +
+    '/' +
+    (config.options?.instanceName || '') +
+    ';' +
+    (config.database || '')
+  )
+}
 
-let shutdownInitialized = false;
+let shutdownInitialized = false
 
-export const connect = async (config: mssql.config): Promise<mssql.ConnectionPool> => {
-    const poolKey = getPoolKey(config);
+export const connect = async (
+  config: mssql.config
+): Promise<mssql.ConnectionPool> => {
+  const poolKey = getPoolKey(config)
 
-    let pool = POOLS.get(poolKey);
+  let pool = POOLS.get(poolKey)
 
-    if (!pool || !pool.connected) {
-        debugSQL("New database connection: " + poolKey);
+  if (!pool || !pool.connected) {
+    debugSQL('New database connection: ' + poolKey)
 
-        pool = await new mssql.ConnectionPool(config).connect();
-        POOLS.set(poolKey, pool);
+    pool = await new mssql.ConnectionPool(config).connect()
+    POOLS.set(poolKey, pool)
+  }
+
+  if (!shutdownInitialized) {
+    if (process) {
+      debugSQL('Initializing shutdown hooks.')
+      exitHook(releaseAll)
     }
 
-    if (!shutdownInitialized) {
-        if (process) {
-            debugSQL("Initializing shutdown hooks.");
-            exitHook(releaseAll);
-        }
+    shutdownInitialized = true
+  }
 
-        shutdownInitialized = true;
-    }
-
-    return pool;
-};
+  return pool
+}
 
 export const releaseAll = (): void => {
-    debugSQL("Releasing " + POOLS.size.toString() + " pools.");
+  debugSQL('Releasing ' + POOLS.size.toString() + ' pools.')
 
-    for (const poolKey of POOLS.keys()) {
-        debugSQL("Releasing pool: " + poolKey);
+  for (const poolKey of POOLS.keys()) {
+    debugSQL('Releasing pool: ' + poolKey)
 
-        try {
-            POOLS.get(poolKey).close();
-        } catch {
-            // ignore
-        }
+    try {
+      POOLS.get(poolKey).close()
+    } catch {
+      // ignore
     }
+  }
 
-    POOLS.clear();
-};
+  POOLS.clear()
+}
 
 export const getPoolCount = (): number => {
-    return POOLS.size;
-};
+  return POOLS.size
+}

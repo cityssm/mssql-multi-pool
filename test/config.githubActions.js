@@ -1,7 +1,7 @@
 export const config = {
-    user: "SA",
-    password: "Password12!",
     server: "localhost",
+    user: "sa",
+    password: "dbatools.I0",
     database: "master",
     options: {
         encrypt: false

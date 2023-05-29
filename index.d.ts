@@ -1,4 +1,4 @@
-import mssql from "mssql";
+import mssql from 'mssql';
 export declare const connect: (config: mssql.config) => Promise<mssql.ConnectionPool>;
 export declare const releaseAll: () => void;
 export declare const getPoolCount: () => number;
