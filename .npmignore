@@ -12,5 +12,4 @@ test
 .gitignore
 .npmignore
 .snyk
-appveyor.yml
 tsconfig.json
