@@ -34,14 +34,13 @@ If the configuration object describes an unseen database, a new pool is made.
 Otherwise, the previously made pool is used.
 
 ```javascript
-import * as sql from "@cityssm/mssql-multi-pool";
+import * as sql from '@cityssm/mssql-multi-pool'
 
-(async function () {
-    try {
-        let pool = await sql.connect(config);
+;(async function () {
+  try {
+    let pool = await sql.connect(config)
 
-        // Use the `mssql` package like before.
-
-    } catch (e) {}
-})();
+    // Use the `mssql` package like before.
+  } catch (e) {}
+})()
 ```
