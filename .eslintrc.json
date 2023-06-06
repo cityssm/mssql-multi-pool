@@ -30,7 +30,6 @@
         }
       }
     ],
-    "node/no-missing-import": "off", // error prone in codacy, covered in import plugin
     "unicorn/filename-case": [
       "error",
       {
