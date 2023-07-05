@@ -5,7 +5,6 @@
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability)
 [![codecov](https://codecov.io/gh/cityssm/mssql-multi-pool/branch/main/graph/badge.svg?token=865Y3ZDNMC)](https://codecov.io/gh/cityssm/mssql-multi-pool)
 [![Coverage Testing](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml/badge.svg)](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml)
-[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/mssql-multi-pool)](https://app.snyk.io/org/cityssm/project/33592cf9-47cd-4589-af1d-53dfc5bd9887)
 
 A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.
 

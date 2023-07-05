@@ -4,17 +4,17 @@ import mssql from 'mssql'
 
 const debugSQL = debug('mssql-multi-pool:index')
 
-const POOLS: Map<string, mssql.ConnectionPool> = new Map()
+const POOLS = new Map<string, mssql.ConnectionPool>()
 
-const getPoolKey = (config: mssql.config) => {
+function getPoolKey(config: mssql.config): string {
   return (
-    (config.user || '') +
+    (config.user ?? '') +
     '@' +
     config.server +
     '/' +
-    (config.options?.instanceName || '') +
+    (config.options?.instanceName ?? '') +
     ';' +
-    (config.database || '')
+    (config.database ?? '')
   )
 }
 
@@ -27,7 +27,7 @@ export const connect = async (
 
   let pool = POOLS.get(poolKey)
 
-  if (!pool || !pool.connected) {
+  if (pool === undefined || !pool.connected) {
     debugSQL('New database connection: ' + poolKey)
 
     pool = await new mssql.ConnectionPool(config).connect()
@@ -35,10 +35,8 @@ export const connect = async (
   }
 
   if (!shutdownInitialized) {
-    if (process) {
-      debugSQL('Initializing shutdown hooks.')
-      exitHook(releaseAll)
-    }
+    debugSQL('Initializing shutdown hooks.')
+    exitHook(releaseAll)
 
     shutdownInitialized = true
   }
@@ -53,7 +51,10 @@ export const releaseAll = (): void => {
     debugSQL('Releasing pool: ' + poolKey)
 
     try {
-      POOLS.get(poolKey).close()
+      const pool = POOLS.get(poolKey)
+      if (pool !== undefined) {
+        void pool.close()
+      }
     } catch {
       // ignore
     }

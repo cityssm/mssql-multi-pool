@@ -1,4 +1,4 @@
-import type { config as ConnectionPoolConfig } from "mssql";
+import type { config as ConnectionPoolConfig } from 'mssql'
 
 /*
  * SECRETS OK!
@@ -6,11 +6,11 @@ import type { config as ConnectionPoolConfig } from "mssql";
  */
 
 export const config: ConnectionPoolConfig = {
-    server: "localhost",
-    user: "sa",
-    password: "dbatools.I0",
-    database: "master",
-    options: {
-        encrypt: false
-    }
-};
+  server: 'localhost',
+  user: 'sa',
+  password: 'dbatools.I0',
+  database: 'master',
+  options: {
+    encrypt: false
+  }
+}
