@@ -7,7 +7,7 @@ function getPoolKey(config) {
     return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
 }
 let shutdownInitialized = false;
-export const connect = async (config) => {
+export async function connect(config) {
     const poolKey = getPoolKey(config);
     let pool = POOLS.get(poolKey);
     if (pool === undefined || !pool.connected) {
@@ -21,8 +21,8 @@ export const connect = async (config) => {
         shutdownInitialized = true;
     }
     return pool;
-};
-export const releaseAll = () => {
+}
+export function releaseAll() {
     debugSQL(`Releasing ${POOLS.size.toString()} pools.`);
     for (const poolKey of POOLS.keys()) {
         debugSQL(`Releasing pool: ${poolKey}`);
@@ -37,7 +37,12 @@ export const releaseAll = () => {
         }
     }
     POOLS.clear();
-};
-export const getPoolCount = () => {
+}
+export function getPoolCount() {
     return POOLS.size;
+}
+export default {
+    connect,
+    releaseAll,
+    getPoolCount
 };

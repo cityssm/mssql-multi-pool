@@ -1,8 +1,11 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-named-as-default-member */
+
 import assert from 'node:assert'
 
-import * as mssqlMultiPool from '../index.js'
+import mssqlMultiPool from '../index.js'
 
-import * as configFile from './config.test.js'
+import { config } from './config.test.js'
 
 describe('mssql-multi-pool', () => {
   after(() => {
@@ -10,7 +13,7 @@ describe('mssql-multi-pool', () => {
   })
 
   it('Connects to database', async () => {
-    const pool = await mssqlMultiPool.connect(configFile.config)
+    const pool = await mssqlMultiPool.connect(config)
 
     await pool.request().query('select 1')
 
@@ -20,7 +23,7 @@ describe('mssql-multi-pool', () => {
   it('Connects to database again', async () => {
     const poolCountStart = mssqlMultiPool.getPoolCount()
 
-    const pool = await mssqlMultiPool.connect(configFile.config)
+    const pool = await mssqlMultiPool.connect(config)
 
     await pool.request().query('select 1')
 

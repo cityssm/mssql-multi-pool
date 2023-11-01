@@ -14,9 +14,9 @@ function getPoolKey(config: mssql.config): string {
 
 let shutdownInitialized = false
 
-export const connect = async (
+export async function connect(
   config: mssql.config
-): Promise<mssql.ConnectionPool> => {
+): Promise<mssql.ConnectionPool> {
   const poolKey = getPoolKey(config)
 
   let pool = POOLS.get(poolKey)
@@ -38,7 +38,7 @@ export const connect = async (
   return pool
 }
 
-export const releaseAll = (): void => {
+export function releaseAll(): void {
   debugSQL(`Releasing ${POOLS.size.toString()} pools.`)
 
   for (const poolKey of POOLS.keys()) {
@@ -57,6 +57,12 @@ export const releaseAll = (): void => {
   POOLS.clear()
 }
 
-export const getPoolCount = (): number => {
+export function getPoolCount(): number {
   return POOLS.size
+}
+
+export default {
+  connect,
+  releaseAll,
+  getPoolCount
 }
