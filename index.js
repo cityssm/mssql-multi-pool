@@ -11,7 +11,7 @@ export const connect = async (config) => {
     const poolKey = getPoolKey(config);
     let pool = POOLS.get(poolKey);
     if (pool === undefined || !pool.connected) {
-        debugSQL('New database connection: ' + poolKey);
+        debugSQL(`New database connection: ${poolKey}`);
         pool = await new mssql.ConnectionPool(config).connect();
         POOLS.set(poolKey, pool);
     }
@@ -23,9 +23,9 @@ export const connect = async (config) => {
     return pool;
 };
 export const releaseAll = () => {
-    debugSQL('Releasing ' + POOLS.size.toString() + ' pools.');
+    debugSQL(`Releasing ${POOLS.size.toString()} pools.`);
     for (const poolKey of POOLS.keys()) {
-        debugSQL('Releasing pool: ' + poolKey);
+        debugSQL(`Releasing pool: ${poolKey}`);
         try {
             const pool = POOLS.get(poolKey);
             if (pool !== undefined) {
@@ -33,6 +33,7 @@ export const releaseAll = () => {
             }
         }
         catch {
+            debugSQL('Error closing connections.');
         }
     }
     POOLS.clear();
