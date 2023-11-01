@@ -27,7 +27,7 @@ describe('mssql-multi-pool', () => {
     assert.strictEqual(getPoolCount(), poolCountStart)
   })
 
-  it('Releases all pools', async () => {
+  it('Releases all pools', () => {
     releaseAll()
 
     assert.strictEqual(getPoolCount(), 0)
