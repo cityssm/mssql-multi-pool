@@ -1,7 +1,6 @@
 # mssql-multi-pool
 
 [![npm](https://img.shields.io/npm/v/@cityssm/mssql-multi-pool)](https://www.npmjs.com/package/@cityssm/mssql-multi-pool)
-[![Codacy Badge](https://img.shields.io/codacy/grade/19dbca72690940f69b2b96fe045575db)](https://www.codacy.com/gh/cityssm/mssql-multi-pool/dashboard)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability)
 [![codecov](https://codecov.io/gh/cityssm/mssql-multi-pool/branch/main/graph/badge.svg?token=865Y3ZDNMC)](https://codecov.io/gh/cityssm/mssql-multi-pool)
 [![Coverage Testing](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml/badge.svg)](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml)

@@ -4,14 +4,7 @@ import mssql from 'mssql';
 const debugSQL = debug('mssql-multi-pool:index');
 const POOLS = new Map();
 function getPoolKey(config) {
-    var _a, _b, _c, _d;
-    return (((_a = config.user) !== null && _a !== void 0 ? _a : '') +
-        '@' +
-        config.server +
-        '/' +
-        ((_c = (_b = config.options) === null || _b === void 0 ? void 0 : _b.instanceName) !== null && _c !== void 0 ? _c : '') +
-        ';' +
-        ((_d = config.database) !== null && _d !== void 0 ? _d : ''));
+    return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
 }
 let shutdownInitialized = false;
 export const connect = async (config) => {
@@ -39,7 +32,7 @@ export const releaseAll = () => {
                 void pool.close();
             }
         }
-        catch (_a) {
+        catch {
         }
     }
     POOLS.clear();

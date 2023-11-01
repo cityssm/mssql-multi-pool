@@ -7,15 +7,9 @@ const debugSQL = debug('mssql-multi-pool:index')
 const POOLS = new Map<string, mssql.ConnectionPool>()
 
 function getPoolKey(config: mssql.config): string {
-  return (
-    (config.user ?? '') +
-    '@' +
-    config.server +
-    '/' +
-    (config.options?.instanceName ?? '') +
-    ';' +
-    (config.database ?? '')
-  )
+  return `${config.user ?? ''}@${config.server}/${
+    config.options?.instanceName ?? ''
+  };${config.database ?? ''}`
 }
 
 let shutdownInitialized = false
