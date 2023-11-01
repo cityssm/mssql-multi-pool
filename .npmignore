@@ -7,9 +7,12 @@ test
 
 .atomignore
 .codeclimate.yml
+.deepsource.toml
 .eslintignore
 .eslintrc.json
 .gitignore
 .npmignore
+.prettierignore
+.prettierrc.json
 .snyk
 tsconfig.json
