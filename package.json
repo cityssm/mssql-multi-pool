@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/mssql-multi-pool",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "exports": "./index.js",
   "description": "A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious driver.",
