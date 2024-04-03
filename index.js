@@ -8,6 +8,13 @@ function getPoolKey(config) {
 }
 let shutdownInitialized = false;
 export async function connect(config) {
+    if (!shutdownInitialized) {
+        debugSQL('Initializing shutdown hooks.');
+        exitHook(() => {
+            void releaseAll();
+        });
+        shutdownInitialized = true;
+    }
     const poolKey = getPoolKey(config);
     let pool = POOLS.get(poolKey);
     if (pool === undefined || !pool.connected) {
@@ -15,21 +22,16 @@ export async function connect(config) {
         pool = await new mssql.ConnectionPool(config).connect();
         POOLS.set(poolKey, pool);
     }
-    if (!shutdownInitialized) {
-        debugSQL('Initializing shutdown hooks.');
-        exitHook(releaseAll);
-        shutdownInitialized = true;
-    }
     return pool;
 }
-export function releaseAll() {
+export async function releaseAll() {
     debugSQL(`Releasing ${POOLS.size.toString()} pools.`);
     for (const poolKey of POOLS.keys()) {
         debugSQL(`Releasing pool: ${poolKey}`);
         try {
             const pool = POOLS.get(poolKey);
             if (pool !== undefined) {
-                void pool.close();
+                await pool.close();
             }
         }
         catch {

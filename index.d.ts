@@ -1,6 +1,6 @@
 import mssql from 'mssql';
 export declare function connect(config: mssql.config): Promise<mssql.ConnectionPool>;
-export declare function releaseAll(): void;
+export declare function releaseAll(): Promise<void>;
 export declare function getPoolCount(): number;
 declare const _default: {
     connect: typeof connect;

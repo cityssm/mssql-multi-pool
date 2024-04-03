@@ -5,8 +5,8 @@ import { connect, getPoolCount, releaseAll } from '../index.js'
 import { config } from './config.test.js'
 
 describe('mssql-multi-pool', () => {
-  after(() => {
-    releaseAll()
+  after(async () => {
+    await releaseAll()
   })
 
   it('Connects to database', async () => {
@@ -27,8 +27,8 @@ describe('mssql-multi-pool', () => {
     assert.strictEqual(getPoolCount(), poolCountStart)
   })
 
-  it('Releases all pools', () => {
-    releaseAll()
+  it('Releases all pools', async () => {
+    await releaseAll()
 
     assert.strictEqual(getPoolCount(), 0)
   })
