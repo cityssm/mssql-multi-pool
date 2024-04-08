@@ -1,5 +1,6 @@
 import mssql from 'mssql';
-export declare function connect(config: mssql.config): Promise<mssql.ConnectionPool>;
+export type MSSQLConfig = mssql.config;
+export declare function connect(config: MSSQLConfig): Promise<mssql.ConnectionPool>;
 export declare function releaseAll(): Promise<void>;
 export declare function getPoolCount(): number;
 declare const _default: {
@@ -8,4 +9,4 @@ declare const _default: {
     getPoolCount: typeof getPoolCount;
 };
 export default _default;
-export type { config, IRecordSet, IResult, Transaction } from 'mssql';
+export type { IRecordSet, IResult, Transaction } from 'mssql';
