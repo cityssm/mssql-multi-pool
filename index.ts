@@ -83,3 +83,5 @@ export default {
   releaseAll,
   getPoolCount
 }
+
+export type { config as MSSQLConfig, IRecordSet, IResult } from 'mssql'

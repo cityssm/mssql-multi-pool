@@ -8,3 +8,4 @@ declare const _default: {
     getPoolCount: typeof getPoolCount;
 };
 export default _default;
+export type { config as MSSQLConfig, IRecordSet, IResult } from 'mssql';
