@@ -14,5 +14,4 @@ test
 .npmignore
 .prettierignore
 .prettierrc.json
-.snyk
 tsconfig.json
