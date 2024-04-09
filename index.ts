@@ -14,16 +14,14 @@ function getPoolKey(config: mssql.config): string {
 
 let shutdownInitialized = false
 
-export type MSSQLConfig = mssql.config
-
 /**
  * Connect to a MSSQL database.
  * Creates a new connection if the configuration does not match a previously seen configuration.
- * @param {MSSQLConfig} config - MSSQL configuration.
+ * @param {mssql.config} config - MSSQL configuration.
  * @returns {mssql.ConnectionPool} - A MSSQL connection pool.
  */
 export async function connect(
-  config: MSSQLConfig
+  config: mssql.config
 ): Promise<mssql.ConnectionPool> {
   if (!shutdownInitialized) {
     debugSQL('Initializing shutdown hooks.')
@@ -87,7 +85,9 @@ export default {
 }
 
 export type {
+  ConnectionPool,
   IRecordSet,
   IResult,
-  Transaction
+  Transaction,
+  config
 } from 'mssql'
