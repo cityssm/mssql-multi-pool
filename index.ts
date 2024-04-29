@@ -1,8 +1,8 @@
-import debug from 'debug'
+import Debug from 'debug'
 import exitHook from 'exit-hook'
 import mssql from 'mssql'
 
-const debugSQL = debug('mssql-multi-pool:index')
+const debug = Debug('mssql-multi-pool:index')
 
 const POOLS = new Map<string, mssql.ConnectionPool>()
 
@@ -11,8 +11,6 @@ function getPoolKey(config: mssql.config): string {
     config.options?.instanceName ?? ''
   };${config.database ?? ''}`
 }
-
-let shutdownInitialized = false
 
 /**
  * Connect to a MSSQL database.
@@ -23,23 +21,13 @@ let shutdownInitialized = false
 export async function connect(
   config: mssql.config
 ): Promise<mssql.ConnectionPool> {
-  if (!shutdownInitialized) {
-    debugSQL('Initializing shutdown hooks.')
-
-    exitHook(() => {
-      void releaseAll()
-    })
-
-    shutdownInitialized = true
-  }
-
   const poolKey = getPoolKey(config)
 
   let pool = POOLS.get(poolKey)
 
   // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
   if (pool === undefined || !pool.connected) {
-    debugSQL(`New database connection: ${poolKey}`)
+    debug(`New database connection: ${poolKey}`)
 
     pool = await new mssql.ConnectionPool(config).connect()
     POOLS.set(poolKey, pool)
@@ -52,10 +40,10 @@ export async function connect(
  * Release all open connection pools.
  */
 export async function releaseAll(): Promise<void> {
-  debugSQL(`Releasing ${POOLS.size.toString()} pools.`)
+  debug(`Releasing ${POOLS.size.toString()} pools.`)
 
   for (const poolKey of POOLS.keys()) {
-    debugSQL(`Releasing pool: ${poolKey}`)
+    debug(`Releasing pool: ${poolKey}`)
 
     try {
       const pool = POOLS.get(poolKey)
@@ -63,7 +51,7 @@ export async function releaseAll(): Promise<void> {
         await pool.close()
       }
     } catch {
-      debugSQL('Error closing connections.')
+      debug('Error closing connections.')
     }
   }
 
@@ -77,6 +65,12 @@ export async function releaseAll(): Promise<void> {
 export function getPoolCount(): number {
   return POOLS.size
 }
+
+debug('Initializing shutdown hooks.')
+
+exitHook(() => {
+  void releaseAll()
+})
 
 export default {
   connect,
