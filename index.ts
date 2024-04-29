@@ -4,6 +4,7 @@ import mssql from 'mssql'
 
 const debug = Debug('mssql-multi-pool:index')
 
+let shutdownIsInitialized = false
 const POOLS = new Map<string, mssql.ConnectionPool>()
 
 function getPoolKey(config: mssql.config): string {
@@ -66,11 +67,19 @@ export function getPoolCount(): number {
   return POOLS.size
 }
 
-debug('Initializing shutdown hooks.')
+/**
+ * Initialize shutdown.
+ */
+if (!shutdownIsInitialized) {
+  debug('Initializing shutdown hooks.')
 
-exitHook(() => {
-  void releaseAll()
-})
+  exitHook(() => {
+    debug('Running shutdown hooks.')
+    void releaseAll()
+  })
+
+  shutdownIsInitialized = true
+}
 
 export default {
   connect,
