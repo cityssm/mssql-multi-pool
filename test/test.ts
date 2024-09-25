@@ -15,6 +15,7 @@ await describe('mssql-multi-pool', async () => {
 
     await pool.request().query('select 1')
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     assert.strictEqual(getPoolCount(), 1)
   })
 
@@ -31,6 +32,7 @@ await describe('mssql-multi-pool', async () => {
   await it('Releases all pools', async () => {
     await releaseAll()
 
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     assert.strictEqual(getPoolCount(), 0)
   })
 })

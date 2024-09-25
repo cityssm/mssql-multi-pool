@@ -8,6 +8,7 @@ import type { config as ConnectionPoolConfig } from '../index.js'
 export const config: ConnectionPoolConfig = {
   server: 'localhost',
   user: 'sa',
+  // eslint-disable-next-line sonarjs/no-hardcoded-credentials
   password: 'dbatools.I0',
   database: 'master',
   options: {

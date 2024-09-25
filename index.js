@@ -2,7 +2,6 @@ import Debug from 'debug';
 import exitHook from 'exit-hook';
 import mssql from 'mssql';
 const debug = Debug('mssql-multi-pool:index');
-let shutdownIsInitialized = false;
 const POOLS = new Map();
 function getPoolKey(config) {
     return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
@@ -10,7 +9,7 @@ function getPoolKey(config) {
 export async function connect(config) {
     const poolKey = getPoolKey(config);
     let pool = POOLS.get(poolKey);
-    if (pool === undefined || !pool.connected) {
+    if (!(pool?.connected ?? false)) {
         debug(`New database connection: ${poolKey}`);
         pool = await new mssql.ConnectionPool(config).connect();
         POOLS.set(poolKey, pool);
@@ -36,14 +35,11 @@ export async function releaseAll() {
 export function getPoolCount() {
     return POOLS.size;
 }
-if (!shutdownIsInitialized) {
-    debug('Initializing shutdown hooks.');
-    exitHook(() => {
-        debug('Running shutdown hooks.');
-        void releaseAll();
-    });
-    shutdownIsInitialized = true;
-}
+debug('Initializing shutdown hooks.');
+exitHook(() => {
+    debug('Running shutdown hooks.');
+    void releaseAll();
+});
 export default {
     connect,
     releaseAll,
