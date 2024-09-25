@@ -29,9 +29,9 @@
     "coverage": "cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js"
   },
   "dependencies": {
-    "debug": "^4.3.4",
+    "debug": "^4.3.7",
     "exit-hook": "^4.0.0",
-    "mssql": "^10.0.2"
+    "mssql": "^11.0.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
