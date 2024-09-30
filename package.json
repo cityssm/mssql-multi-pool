@@ -37,7 +37,7 @@
     "@types/debug": "^4.1.12",
     "@types/mssql": "^9.1.5",
     "cross-env": "^7.0.3",
-    "eslint-config-cityssm": "^9.0.1",
+    "eslint-config-cityssm": "^10.1.1",
     "prettier-config-cityssm": "^1.0.0"
   }
 }
