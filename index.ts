@@ -121,10 +121,12 @@ export type {
   UDT,
   Geography,
   Geometry,
+  TYPES,
   ConnectionPool,
   Transaction,
   IColumnMetadata,
   IRecordSet,
   IResult,
+  ISqlType,
   config
 } from 'mssql'

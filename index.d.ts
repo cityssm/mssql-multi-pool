@@ -9,4 +9,4 @@ declare const _default: {
 };
 export default _default;
 export * as mssql from 'mssql';
-export type { Bit, BigInt, Decimal, Float, Int, Money, Numeric, SmallInt, SmallMoney, Real, TinyInt, Char, NChar, Text, NText, VarChar, NVarChar, Xml, Time, Date, DateTime, DateTime2, DateTimeOffset, SmallDateTime, UniqueIdentifier, Variant, Binary, VarBinary, Image, UDT, Geography, Geometry, ConnectionPool, Transaction, IColumnMetadata, IRecordSet, IResult, config } from 'mssql';
+export type { Bit, BigInt, Decimal, Float, Int, Money, Numeric, SmallInt, SmallMoney, Real, TinyInt, Char, NChar, Text, NText, VarChar, NVarChar, Xml, Time, Date, DateTime, DateTime2, DateTimeOffset, SmallDateTime, UniqueIdentifier, Variant, Binary, VarBinary, Image, UDT, Geography, Geometry, TYPES, ConnectionPool, Transaction, IColumnMetadata, IRecordSet, IResult, ISqlType, config } from 'mssql';
