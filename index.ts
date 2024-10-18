@@ -1,16 +1,15 @@
 import Debug from 'debug'
 import exitHook from 'exit-hook'
-import mssql from 'mssql'
 import msNodeSql from 'mssql/msnodesqlv8.js'
 
 const debug = Debug('mssql-multi-pool:index')
 
-const POOLS = new Map<string, mssql.ConnectionPool>()
+const POOLS = new Map<string, msNodeSql.ConnectionPool>()
 
-function getPoolKey(config: mssql.config): string {
+function getPoolKey(config: msNodeSql.config): string {
   return `${config.user ?? ''}@${config.server}/${
     config.options?.instanceName ?? ''
-  };${config.database ?? ''};${config.driver ?? 'tedious'}`
+  };${config.database ?? ''}`
 }
 
 /**
@@ -20,8 +19,9 @@ function getPoolKey(config: mssql.config): string {
  * @returns A MSSQL connection pool.
  */
 export async function connect(
-  config: mssql.config
-): Promise<mssql.ConnectionPool> {
+  config: msNodeSql.config
+): Promise<msNodeSql.ConnectionPool> {
+
   const poolKey = getPoolKey(config)
 
   let pool = POOLS.get(poolKey)
@@ -29,14 +29,14 @@ export async function connect(
   if (!(pool?.connected ?? false)) {
     debug(`New database connection: ${poolKey}`)
 
-    pool =
-      (config.driver ?? '') === 'msnodesqlv8'
-        ? await new msNodeSql.ConnectionPool(config).connect()
-        : await new mssql.ConnectionPool(config).connect()
+    pool = new msNodeSql.ConnectionPool(config)
+
+    await pool.connect()
+
     POOLS.set(poolKey, pool)
   }
 
-  return pool as mssql.ConnectionPool
+  return pool as msNodeSql.ConnectionPool
 }
 
 /**
@@ -90,7 +90,7 @@ export default {
   getPoolCount
 }
 
-export * as mssql from 'mssql'
+export * as mssql from 'mssql/msnodesqlv8.js'
 
 export type {
   Bit,
@@ -133,4 +133,4 @@ export type {
   IResult,
   ISqlType,
   config
-} from 'mssql'
+} from 'mssql/msnodesqlv8.js'

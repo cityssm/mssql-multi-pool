@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
+    "@types/node": "^22.7.6",
     "cross-env": "^7.0.3",
     "eslint-config-cityssm": "^13.0.0",
     "prettier-config-cityssm": "^1.0.0"
