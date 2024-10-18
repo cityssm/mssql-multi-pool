@@ -1,17 +1,21 @@
 import Debug from 'debug';
 import exitHook from 'exit-hook';
 import mssql from 'mssql';
+import msNodeSql from 'mssql/msnodesqlv8.js';
 const debug = Debug('mssql-multi-pool:index');
 const POOLS = new Map();
 function getPoolKey(config) {
-    return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
+    return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''};${config.driver ?? 'tedious'}`;
 }
 export async function connect(config) {
     const poolKey = getPoolKey(config);
     let pool = POOLS.get(poolKey);
     if (!(pool?.connected ?? false)) {
         debug(`New database connection: ${poolKey}`);
-        pool = await new mssql.ConnectionPool(config).connect();
+        pool =
+            (config.driver ?? '') === 'msnodesqlv8'
+                ? await new msNodeSql.ConnectionPool(config).connect()
+                : await new mssql.ConnectionPool(config).connect();
         POOLS.set(poolKey, pool);
     }
     return pool;
