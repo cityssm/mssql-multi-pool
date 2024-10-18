@@ -29,13 +29,13 @@
     "coverage": "cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js"
   },
   "dependencies": {
+    "@types/mssql": "^9.1.5",
     "debug": "^4.3.7",
     "exit-hook": "^4.0.0",
     "mssql": "^11.0.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/mssql": "^9.1.5",
     "cross-env": "^7.0.3",
     "eslint-config-cityssm": "^13.0.0",
     "prettier-config-cityssm": "^1.0.0"
