@@ -8,4 +8,5 @@ declare const _default: {
     getPoolCount: typeof getPoolCount;
 };
 export default _default;
-export type { ConnectionPool, IRecordSet, IResult, Transaction, config } from 'mssql';
+export * as mssql from 'mssql';
+export type { Bit, BigInt, Decimal, Float, Int, Money, Numeric, SmallInt, SmallMoney, Real, TinyInt, Char, NChar, Text, NText, VarChar, NVarChar, Xml, Time, Date, DateTime, DateTime2, DateTimeOffset, SmallDateTime, UniqueIdentifier, Variant, Binary, VarBinary, Image, UDT, Geography, Geometry, ConnectionPool, Transaction, IColumnMetadata, IRecordSet, IResult, config } from 'mssql';

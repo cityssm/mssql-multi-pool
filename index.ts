@@ -14,7 +14,7 @@ function getPoolKey(config: mssql.config): string {
 
 /**
  * Connect to a MSSQL database.
- * Creates a new connection if the configuration does not match a previously seen configuration.
+ * Creates a new connection if the configuration does not match a seen configuration.
  * @param config - MSSQL configuration.
  * @returns A MSSQL connection pool.
  */
@@ -58,7 +58,7 @@ export async function releaseAll(): Promise<void> {
 }
 
 /**
- * Retrieves the number of currently managed connection pools.
+ * Retrieves the number of managed connection pools.
  * @returns The number of pools.
  */
 export function getPoolCount(): number {
@@ -86,10 +86,45 @@ export default {
   getPoolCount
 }
 
+export * as mssql from 'mssql'
+
 export type {
+  Bit,
+  BigInt,
+  Decimal,
+  Float,
+  Int,
+  Money,
+  Numeric,
+  SmallInt,
+  SmallMoney,
+  Real,
+  TinyInt,
+  Char,
+  NChar,
+  Text,
+  NText,
+  VarChar,
+  NVarChar,
+  Xml,
+  Time,
+  Date,
+  DateTime,
+  DateTime2,
+  DateTimeOffset,
+  SmallDateTime,
+  UniqueIdentifier,
+  Variant,
+  Binary,
+  VarBinary,
+  Image,
+  UDT,
+  Geography,
+  Geometry,
   ConnectionPool,
+  Transaction,
+  IColumnMetadata,
   IRecordSet,
   IResult,
-  Transaction,
   config
 } from 'mssql'
