@@ -1,6 +1,9 @@
 import Debug from 'debug';
 import exitHook from 'exit-hook';
-import msNodeSql from 'mssql/msnodesqlv8.js';
+const mssqlImport = process.platform === 'win32'
+    ? await import('mssql/msnodesqlv8.js')
+    : await import('mssql');
+export const mssql = mssqlImport.default;
 const debug = Debug('mssql-multi-pool:index');
 const POOLS = new Map();
 function getPoolKey(config) {
@@ -11,7 +14,7 @@ export async function connect(config) {
     let pool = POOLS.get(poolKey);
     if (!(pool?.connected ?? false)) {
         debug(`New database connection: ${poolKey}`);
-        pool = new msNodeSql.ConnectionPool(config);
+        pool = new mssql.ConnectionPool(config);
         await pool.connect();
         POOLS.set(poolKey, pool);
     }
@@ -46,4 +49,3 @@ export default {
     releaseAll,
     getPoolCount
 };
-export * as mssql from 'mssql/msnodesqlv8.js';

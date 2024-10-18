@@ -1,12 +1,20 @@
 import Debug from 'debug'
 import exitHook from 'exit-hook'
-import msNodeSql from 'mssql/msnodesqlv8.js'
+import type mssqlTypes from 'mssql'
+
+const mssqlImport =
+  process.platform === 'win32'
+    ? await import('mssql/msnodesqlv8.js')
+    : await import('mssql')
+
+// eslint-disable-next-line @typescript-eslint/prefer-destructuring
+export const mssql = mssqlImport.default
 
 const debug = Debug('mssql-multi-pool:index')
 
-const POOLS = new Map<string, msNodeSql.ConnectionPool>()
+const POOLS = new Map<string, mssqlTypes.ConnectionPool>()
 
-function getPoolKey(config: msNodeSql.config): string {
+function getPoolKey(config: mssqlTypes.config): string {
   return `${config.user ?? ''}@${config.server}/${
     config.options?.instanceName ?? ''
   };${config.database ?? ''}`
@@ -19,9 +27,8 @@ function getPoolKey(config: msNodeSql.config): string {
  * @returns A MSSQL connection pool.
  */
 export async function connect(
-  config: msNodeSql.config
-): Promise<msNodeSql.ConnectionPool> {
-
+  config: mssqlTypes.config
+): Promise<mssqlTypes.ConnectionPool> {
   const poolKey = getPoolKey(config)
 
   let pool = POOLS.get(poolKey)
@@ -29,14 +36,14 @@ export async function connect(
   if (!(pool?.connected ?? false)) {
     debug(`New database connection: ${poolKey}`)
 
-    pool = new msNodeSql.ConnectionPool(config)
+    pool = new mssql.ConnectionPool(config)
 
     await pool.connect()
 
     POOLS.set(poolKey, pool)
   }
 
-  return pool as msNodeSql.ConnectionPool
+  return pool as mssqlTypes.ConnectionPool
 }
 
 /**
@@ -89,48 +96,3 @@ export default {
   releaseAll,
   getPoolCount
 }
-
-export * as mssql from 'mssql/msnodesqlv8.js'
-
-export type {
-  Bit,
-  BigInt,
-  Decimal,
-  Float,
-  Int,
-  Money,
-  Numeric,
-  SmallInt,
-  SmallMoney,
-  Real,
-  TinyInt,
-  Char,
-  NChar,
-  Text,
-  NText,
-  VarChar,
-  NVarChar,
-  Xml,
-  Time,
-  Date,
-  DateTime,
-  DateTime2,
-  DateTimeOffset,
-  SmallDateTime,
-  UniqueIdentifier,
-  Variant,
-  Binary,
-  VarBinary,
-  Image,
-  UDT,
-  Geography,
-  Geometry,
-  TYPES,
-  ConnectionPool,
-  Transaction,
-  IColumnMetadata,
-  IRecordSet,
-  IResult,
-  ISqlType,
-  config
-} from 'mssql/msnodesqlv8.js'
