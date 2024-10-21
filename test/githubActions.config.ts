@@ -1,11 +1,11 @@
-import type { config as ConnectionPoolConfig } from '../index.js'
+import type { mssqlTypes } from '../index.js'
 
 /*
  * SECRETS OK!
  * https://github.com/potatoqualitee/mssqlsuite
  */
 
-export const config: ConnectionPoolConfig = {
+export const config: mssqlTypes.config = {
   server: 'localhost',
   user: 'sa',
   // eslint-disable-next-line sonarjs/no-hardcoded-credentials
