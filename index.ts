@@ -14,7 +14,7 @@ const mssqlImport =
     : await import('mssql')
 
 // eslint-disable-next-line @typescript-eslint/prefer-destructuring
-export const mssql = mssqlImport.default
+const mssql = mssqlImport.default
 
 const POOLS = new Map<string, mssqlTypes.ConnectionPool>()
 
@@ -101,3 +101,5 @@ export default {
   releaseAll,
   getPoolCount
 }
+
+export type * as mssqlTypes from 'mssql'

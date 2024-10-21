@@ -6,7 +6,7 @@ debug(`MSSQL driver: ${driver}`);
 const mssqlImport = driver === 'msnodesqlv8'
     ? await import('mssql/msnodesqlv8.js')
     : await import('mssql');
-export const mssql = mssqlImport.default;
+const mssql = mssqlImport.default;
 const POOLS = new Map();
 function getPoolKey(config) {
     return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
