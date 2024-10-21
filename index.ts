@@ -4,6 +4,11 @@ import type mssqlTypes from 'mssql'
 
 const debug = Debug('mssql-multi-pool:index')
 
+/**
+ * The driver that will be used.
+ * - msnodesqlv8 on Windows.
+ * - tedious or all other operating systems.
+ */
 export const driver = process.platform === 'win32' ? 'msnodesqlv8' : 'tedious'
 
 debug(`MSSQL driver: ${driver}`)

@@ -9,6 +9,7 @@ await describe('mssql-multi-pool', async () => {
     await it('Connects to database', async () => {
         const pool = await mssqlMultiPool.connect(config);
         await pool.request().query('select 1');
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         assert.strictEqual(mssqlMultiPool.getPoolCount(), 1);
     });
     await it('Connects to database again', async () => {
@@ -19,6 +20,7 @@ await describe('mssql-multi-pool', async () => {
     });
     await it('Releases all pools', async () => {
         await mssqlMultiPool.releaseAll();
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         assert.strictEqual(mssqlMultiPool.getPoolCount(), 0);
     });
 });
