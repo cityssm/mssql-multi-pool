@@ -1,10 +1,12 @@
 import Debug from 'debug';
 import exitHook from 'exit-hook';
-const mssqlImport = process.platform === 'win32'
+const debug = Debug('mssql-multi-pool:index');
+export const driver = process.platform === 'win32' ? 'msnodesqlv8' : 'tedious';
+debug(`MSSQL driver: ${driver}`);
+const mssqlImport = driver === 'msnodesqlv8'
     ? await import('mssql/msnodesqlv8.js')
     : await import('mssql');
 export const mssql = mssqlImport.default;
-const debug = Debug('mssql-multi-pool:index');
 const POOLS = new Map();
 function getPoolKey(config) {
     return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
@@ -45,6 +47,7 @@ exitHook(() => {
     void releaseAll();
 });
 export default {
+    driver,
     connect,
     releaseAll,
     getPoolCount

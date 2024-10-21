@@ -2,15 +2,19 @@ import Debug from 'debug'
 import exitHook from 'exit-hook'
 import type mssqlTypes from 'mssql'
 
+const debug = Debug('mssql-multi-pool:index')
+
+export const driver = process.platform === 'win32' ? 'msnodesqlv8' : 'tedious'
+
+debug(`MSSQL driver: ${driver}`)
+
 const mssqlImport =
-  process.platform === 'win32'
+  driver === 'msnodesqlv8'
     ? await import('mssql/msnodesqlv8.js')
     : await import('mssql')
 
 // eslint-disable-next-line @typescript-eslint/prefer-destructuring
 export const mssql = mssqlImport.default
-
-const debug = Debug('mssql-multi-pool:index')
 
 const POOLS = new Map<string, mssqlTypes.ConnectionPool>()
 
@@ -92,6 +96,7 @@ exitHook(() => {
  */
 
 export default {
+  driver,
   connect,
   releaseAll,
   getPoolCount
