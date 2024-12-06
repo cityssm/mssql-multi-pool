@@ -40,7 +40,7 @@ If the configuration object describes an unseen database, a new pool is made.
 Otherwise, the previously made pool is used.
 
 ```typescript
-import mssqlMultiPool, { type mssqlTypes } from '@cityssm/mssql-multi-pool'
+import mssqlMultiPool, { type mssql } from '@cityssm/mssql-multi-pool'
 
 const pool = await mssqlMultiPool.connect(config)
 
@@ -51,5 +51,5 @@ const results = (await pool
   .input('workOrderNumber', '2024-01234')
   .query(
     'select * from WorkOrders where workOrderNumber = @workOrderNumber'
-  )) as mssqlTypes.IResult<WorkOrder>
+  )) as mssql.IResult<WorkOrder>
 ```
