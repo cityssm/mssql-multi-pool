@@ -28,4 +28,8 @@ declare const _default: {
     getPoolCount: typeof getPoolCount;
 };
 export default _default;
+export * as mssql from 'mssql';
+/**
+ * @deprecated - Use `mssql` export.
+ */
 export type * as mssqlTypes from 'mssql';

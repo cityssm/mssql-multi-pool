@@ -77,3 +77,4 @@ export default {
     releaseAll,
     getPoolCount
 };
+export * as mssql from 'mssql';

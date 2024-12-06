@@ -107,4 +107,9 @@ export default {
   getPoolCount
 }
 
+export * as mssql from 'mssql'
+
+/**
+ * @deprecated - Use `mssql` export.
+ */
 export type * as mssqlTypes from 'mssql'
