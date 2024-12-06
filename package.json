@@ -30,16 +30,16 @@
   },
   "dependencies": {
     "@types/mssql": "^9.1.5",
-    "debug": "^4.3.7",
+    "debug": "^4.4.0",
     "exit-hook": "^4.0.0",
-    "msnodesqlv8": "^4.2.1",
+    "msnodesqlv8": "^4.4.0",
     "mssql": "^11.0.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^22.7.7",
+    "@types/node": "^22.10.1",
     "cross-env": "^7.0.3",
-    "eslint-config-cityssm": "^13.0.0",
+    "eslint-config-cityssm": "^17.0.1",
     "prettier-config-cityssm": "^1.0.0"
   }
 }
