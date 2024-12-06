@@ -1,5 +1,6 @@
 import eslintConfigCityssm, {
   type Config,
+  cspellWords,
   tseslint
 } from 'eslint-config-cityssm'
 
@@ -9,7 +10,7 @@ const config = tseslint.config(...eslintConfigCityssm, {
       'warn',
       {
         cspell: {
-          words: ['cityssm', 'msnodesqlv8', 'nvarchar', 'recordset', 'tseslint']
+          words: [...cspellWords, 'msnodesqlv8', 'nvarchar', 'recordset']
         }
       }
     ]

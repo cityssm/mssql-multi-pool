@@ -1,11 +1,11 @@
-import eslintConfigCityssm, { tseslint } from 'eslint-config-cityssm';
+import eslintConfigCityssm, { cspellWords, tseslint } from 'eslint-config-cityssm';
 const config = tseslint.config(...eslintConfigCityssm, {
     rules: {
         '@cspell/spellchecker': [
             'warn',
             {
                 cspell: {
-                    words: ['cityssm', 'msnodesqlv8', 'nvarchar', 'recordset', 'tseslint']
+                    words: [...cspellWords, 'msnodesqlv8', 'nvarchar', 'recordset']
                 }
             }
         ]
