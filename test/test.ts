@@ -3,7 +3,8 @@ import { after, describe, it } from 'node:test'
 
 import Debug from 'debug'
 
-import mssqlMultiPool, { DEBUG_ENABLE_NAMESPACES } from '../index.js'
+import { DEBUG_ENABLE_NAMESPACES } from '../debug.config.js'
+import mssqlMultiPool from '../index.js'
 
 import { config } from './test.config.js'
 
