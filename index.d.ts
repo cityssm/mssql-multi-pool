@@ -1,7 +1,7 @@
 import type mssqlTypes from 'mssql';
 /**
  * The driver that will be used.
- * - msnodesqlv8 on Windows.
+ * - msnodesqlv8 on Windows (if available).
  * - tedious or all other operating systems.
  */
 export declare const driver: string;

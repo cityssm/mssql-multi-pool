@@ -10,7 +10,7 @@ A simple way to manage connections to multiple SQL Server databases using the No
 
 - 💪 Fully typed. Exports all types from node-mssql as well.
 - 🧠 Automatically uses the [MSNodeSQLv8 driver](https://www.npmjs.com/package/msnodesqlv8)
-  on Windows to support Windows authentication,
+  on Windows (when available) to support Windows authentication,
   and the [Tedious driver](https://www.npmjs.com/package/tedious) on other operating systems.
 - 🧹 Automatically cleans up all pools on exit.
 

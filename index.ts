@@ -1,3 +1,4 @@
+import hasPackage from '@cityssm/has-package'
 import Debug from 'debug'
 import exitHook from 'exit-hook'
 import type mssqlTypes from 'mssql'
@@ -6,12 +7,15 @@ import { DEBUG_NAMESPACE } from './debug.config.js'
 
 const debug = Debug(`${DEBUG_NAMESPACE}:index`)
 
+const hasSqlPackage = await hasPackage('msnodesqlv8')
+
 /**
  * The driver that will be used.
- * - msnodesqlv8 on Windows.
+ * - msnodesqlv8 on Windows (if available).
  * - tedious or all other operating systems.
  */
-export const driver = process.platform === 'win32' ? 'msnodesqlv8' : 'tedious'
+export const driver =
+  hasSqlPackage && process.platform === 'win32' ? 'msnodesqlv8' : 'tedious'
 
 debug(`MSSQL driver: ${driver}`)
 

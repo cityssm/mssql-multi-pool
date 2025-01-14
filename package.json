@@ -32,10 +32,10 @@
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js"
   },
   "dependencies": {
+    "@cityssm/has-package": "^1.0.0",
     "@types/mssql": "^9.1.6",
     "debug": "^4.4.0",
     "exit-hook": "^4.0.0",
-    "msnodesqlv8": "^4.4.0",
     "mssql": "^11.0.1"
   },
   "devDependencies": {
@@ -43,5 +43,8 @@
     "@types/node": "^22.10.6",
     "eslint-config-cityssm": "^18.3.0",
     "prettier-config-cityssm": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "msnodesqlv8": "^4.4.0"
   }
 }
