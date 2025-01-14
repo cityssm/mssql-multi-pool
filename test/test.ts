@@ -3,14 +3,18 @@ import { after, describe, it } from 'node:test'
 
 import Debug from 'debug'
 
-import { DEBUG_ENABLE_NAMESPACES } from '../debug.config.js'
-import mssqlMultiPool from '../index.js'
+import { DEBUG_ENABLE_NAMESPACES, DEBUG_NAMESPACE } from '../debug.config.js'
+import mssqlMultiPool, { driver } from '../index.js'
 
 import { config } from './test.config.js'
 
 Debug.enable(DEBUG_ENABLE_NAMESPACES)
 
+const debug = Debug(`${DEBUG_NAMESPACE}:test`)
+
 await describe('mssql-multi-pool', async () => {
+  debug(`Using "${driver}" driver`)
+
   after(() => {
     void mssqlMultiPool.releaseAll()
   })
