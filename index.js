@@ -1,6 +1,8 @@
 import Debug from 'debug';
 import exitHook from 'exit-hook';
-const debug = Debug('mssql-multi-pool:index');
+export const DEBUG_NAMESPACE = 'mssql-multi-pool';
+export const DEBUG_ENABLE_NAMESPACES = `${DEBUG_NAMESPACE}:*`;
+const debug = Debug(`${DEBUG_NAMESPACE}:index`);
 /**
  * The driver that will be used.
  * - msnodesqlv8 on Windows.
@@ -11,7 +13,6 @@ debug(`MSSQL driver: ${driver}`);
 const mssqlImport = driver === 'msnodesqlv8'
     ? await import('mssql/msnodesqlv8.js')
     : await import('mssql');
-// eslint-disable-next-line @typescript-eslint/prefer-destructuring
 const mssql = mssqlImport.default;
 const POOLS = new Map();
 function getPoolKey(config) {

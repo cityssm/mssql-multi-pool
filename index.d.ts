@@ -1,4 +1,6 @@
 import type mssqlTypes from 'mssql';
+export declare const DEBUG_NAMESPACE = "mssql-multi-pool";
+export declare const DEBUG_ENABLE_NAMESPACES = "mssql-multi-pool:*";
 /**
  * The driver that will be used.
  * - msnodesqlv8 on Windows.

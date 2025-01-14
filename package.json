@@ -25,11 +25,11 @@
   "license": "MIT",
   "author": "The Corporation of the City of Sault Ste. Marie",
   "scripts": {
-    "test": "cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* node --test test/test.js",
-    "coverage": "cross-env NODE_ENV=dev DEBUG=mssql-multi-pool:* c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js"
+    "test": "node --test test/test.js",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js"
   },
   "dependencies": {
-    "@types/mssql": "^9.1.5",
+    "@types/mssql": "^9.1.6",
     "debug": "^4.4.0",
     "exit-hook": "^4.0.0",
     "msnodesqlv8": "^4.4.0",
@@ -37,9 +37,9 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.6",
     "cross-env": "^7.0.3",
-    "eslint-config-cityssm": "^17.0.1",
+    "eslint-config-cityssm": "^18.3.0",
     "prettier-config-cityssm": "^1.0.0"
   }
 }

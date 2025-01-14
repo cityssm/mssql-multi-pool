@@ -32,7 +32,7 @@ jobs:
       - name: Install Package
         run: |
           npm ci
-          npm install -g c8 cross-env
+          npm install -g c8
 
       - name: Copy Test Config
         run: cp ./test/githubActions.config.js ./test/test.config.js

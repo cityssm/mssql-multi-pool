@@ -2,7 +2,10 @@ import Debug from 'debug'
 import exitHook from 'exit-hook'
 import type mssqlTypes from 'mssql'
 
-const debug = Debug('mssql-multi-pool:index')
+export const DEBUG_NAMESPACE = 'mssql-multi-pool'
+export const DEBUG_ENABLE_NAMESPACES = `${DEBUG_NAMESPACE}:*`
+
+const debug = Debug(`${DEBUG_NAMESPACE}:index`)
 
 /**
  * The driver that will be used.
@@ -18,7 +21,6 @@ const mssqlImport =
     ? await import('mssql/msnodesqlv8.js')
     : await import('mssql')
 
-// eslint-disable-next-line @typescript-eslint/prefer-destructuring
 const mssql = mssqlImport.default
 
 const POOLS = new Map<string, mssqlTypes.ConnectionPool>()
