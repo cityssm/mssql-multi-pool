@@ -1,11 +1,11 @@
-import type { mssqlTypes } from '../index.js'
+import type { mssql } from '../index.js'
 
 /*
  * SECRETS OK!
  * https://github.com/potatoqualitee/mssqlsuite
  */
 
-export const config: mssqlTypes.config = {
+export const config: mssql.config = {
   server: 'localhost',
   user: 'sa',
   // eslint-disable-next-line sonarjs/no-hardcoded-credentials
