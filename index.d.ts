@@ -29,7 +29,3 @@ declare const _default: {
 };
 export default _default;
 export * as mssql from 'mssql';
-/**
- * @deprecated - Use `mssql` export.
- */
-export type * as mssqlTypes from 'mssql';
