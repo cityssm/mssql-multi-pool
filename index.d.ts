@@ -22,10 +22,10 @@ export declare function releaseAll(): Promise<void>;
  */
 export declare function getPoolCount(): number;
 declare const _default: {
-    driver: string;
     connect: typeof connect;
-    releaseAll: typeof releaseAll;
+    driver: string;
     getPoolCount: typeof getPoolCount;
+    releaseAll: typeof releaseAll;
 };
 export default _default;
 export * as mssql from 'mssql';

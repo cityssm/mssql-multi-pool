@@ -1,7 +1,6 @@
 # mssql-multi-pool
 
 [![npm](https://img.shields.io/npm/v/@cityssm/mssql-multi-pool)](https://www.npmjs.com/package/@cityssm/mssql-multi-pool)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/mssql-multi-pool)](https://codeclimate.com/github/cityssm/mssql-multi-pool/maintainability)
 [![codecov](https://codecov.io/gh/cityssm/mssql-multi-pool/branch/main/graph/badge.svg?token=865Y3ZDNMC)](https://codecov.io/gh/cityssm/mssql-multi-pool)
 [![Coverage Testing](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml/badge.svg)](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml)
 [![DeepSource](https://app.deepsource.com/gh/cityssm/mssql-multi-pool.svg/?label=active+issues&show_trend=true&token=4Yz1B7bqP-sZ50AZnjXpoEos)](https://app.deepsource.com/gh/cityssm/mssql-multi-pool/)
@@ -30,6 +29,8 @@ This project implements that sample code. 👌
 ```sh
 npm install @cityssm/mssql-multi-pool
 ```
+
+💡 If you want to use `msnodesqlv8`, it must be installed separately.
 
 ## Usage
 

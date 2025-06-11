@@ -106,10 +106,10 @@ exitHook(() => {
  */
 
 export default {
-  driver,
   connect,
-  releaseAll,
-  getPoolCount
+  driver,
+  getPoolCount,
+  releaseAll
 }
 
 export * as mssql from 'mssql'

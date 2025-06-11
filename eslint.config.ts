@@ -5,6 +5,7 @@ import eslintConfigCityssm, {
 } from 'eslint-config-cityssm'
 
 const config = tseslint.config(...eslintConfigCityssm, {
+  files: ['**/*.ts'],
   rules: {
     '@cspell/spellchecker': [
       'warn',
