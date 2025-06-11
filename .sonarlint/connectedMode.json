@@ -1,0 +1,5 @@
+{
+    "sonarCloudOrganization": "cityssm",
+    "projectKey": "cityssm_mssql-multi-pool",
+    "region": "EU"
+}
