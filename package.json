@@ -43,8 +43,5 @@
     "@types/node": "^22.10.6",
     "eslint-config-cityssm": "^18.3.0",
     "prettier-config-cityssm": "^1.0.0"
-  },
-  "optionalDependencies": {
-    "msnodesqlv8": "^4.4.0"
   }
 }
