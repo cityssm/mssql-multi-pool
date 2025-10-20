@@ -32,7 +32,7 @@
     "@cityssm/has-package": "^1.0.0",
     "@types/mssql": "^9.1.8",
     "debug": "^4.4.3",
-    "exit-hook": "^4.0.0",
+    "exit-hook": "^5.0.0",
     "mssql": "^12.0.0"
   },
   "devDependencies": {
