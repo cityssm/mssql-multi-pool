@@ -5,12 +5,14 @@
 [![Coverage Testing](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml/badge.svg)](https://github.com/cityssm/mssql-multi-pool/actions/workflows/coverage.yml)
 [![DeepSource](https://app.deepsource.com/gh/cityssm/mssql-multi-pool.svg/?label=active+issues&show_trend=true&token=4Yz1B7bqP-sZ50AZnjXpoEos)](https://app.deepsource.com/gh/cityssm/mssql-multi-pool/)
 
-A simple way to manage connections to multiple SQL Server databases using the Node.js Tedious package ([node-mssql](https://github.com/tediousjs/node-mssql)).
+A simple way to manage connections to multiple SQL Server databases using the
+Node.js Tedious package ([node-mssql](https://github.com/tediousjs/node-mssql)).
 
 - 💪 Fully typed. Exports all types from node-mssql as well.
 - 🧠 Automatically uses the [MSNodeSQLv8 driver](https://www.npmjs.com/package/msnodesqlv8)
   on Windows (when available) to support Windows authentication,
-  and the [Tedious driver](https://www.npmjs.com/package/tedious) on other operating systems.
+  and the [Tedious driver](https://www.npmjs.com/package/tedious) on other
+  operating systems.
 - 🧹 Automatically cleans up all pools on exit.
 
 ## Why?
@@ -20,7 +22,9 @@ provides an easy and reliable way to connect to _one_ SQL Server instance.
 
 Connecting to multiple SQL Server instances is where things get trickier.
 Not too tricky, but it is more involved as you can't rely on the global pool.
-There is some sample code in the [node-mssql README](https://github.com/tediousjs/node-mssql) that shows how to do it.
+There is some sample code in the
+[node-mssql README](https://github.com/tediousjs/node-mssql) that shows how
+to do it.
 
 This project implements that sample code. 👌
 

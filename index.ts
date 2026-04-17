@@ -72,6 +72,7 @@ export async function releaseAll(): Promise<void> {
     try {
       const pool = POOLS.get(poolKey)
       if (pool !== undefined) {
+        // eslint-disable-next-line no-await-in-loop
         await pool.close()
       }
     } catch {
