@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ 18, 20, 22, 24 ]
+        node: [ 20, 22, 24 ]
     env:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
