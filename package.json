@@ -33,6 +33,9 @@
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js",
     "test": "node --test test/test.js"
   },
+  "overrides": {
+    "uuid": "14.0.0"
+  },
   "dependencies": {
     "@cityssm/has-package": "^1.0.0",
     "@types/mssql": "^12.3.0",
