@@ -41,13 +41,13 @@
     "@types/mssql": "^12.3.0",
     "debug": "^4.4.3",
     "exit-hook": "^5.1.0",
-    "mssql": "^12.5.0"
+    "mssql": "^12.7.4"
   },
   "devDependencies": {
     "@types/debug": "^4.1.13",
-    "@types/node": "^25.6.0",
-    "eslint-config-cityssm": "^39.1.0",
-    "prettier-config-cityssm": "^2.1.2"
+    "@types/node": "^26.6.4",
+    "eslint-config-cityssm": "^56.0.0",
+    "prettier-config-cityssm": "^2.2.0"
   },
   "engines": {
     "node": ">=20.0.0"
