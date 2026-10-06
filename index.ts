@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-side-effects */
+
 import hasPackage from '@cityssm/has-package'
 import Debug from 'debug'
 import exitHook from 'exit-hook'

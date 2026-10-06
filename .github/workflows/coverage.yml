@@ -10,21 +10,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ 20, 22, 24 ]
+        node: [ 22, 24 ]
     env:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+
     name: Node ${{ matrix.node }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
 
       - name: Setup SQL Server
-        uses: potatoqualitee/mssqlsuite@v1.7
+        uses: potatoqualitee/mssqlsuite@v2
         with:
           install: sqlengine, sqlclient, sqlpackage
 
@@ -40,17 +40,8 @@ jobs:
         run: npm run coverage
 
       - name: Codecov
-        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 20 }}
+        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 22 }}
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov -t ${CODECOV_TOKEN}
-
-      - name: DeepSource
-        if: ${{ github.event_name != 'pull_request' && env.DEEPSOURCE_DSN != '' && matrix.node == 20 }}
-        run: |
-          # Install deepsource CLI
-          curl https://deepsource.io/cli | sh
-    
-          # From the root directory, run the report coverage command
-          ./bin/deepsource report --analyzer test-coverage --key javascript --value-file ./coverage/lcov.info

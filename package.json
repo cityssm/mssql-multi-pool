@@ -19,7 +19,7 @@
   },
   "license": "MIT",
   "author": "The Corporation of the City of Sault Ste. Marie",
-  "sideEffects": false,
+  "sideEffects": true,
   "type": "module",
   "exports": {
     ".": "./index.js",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/debug": "^4.1.13",
     "@types/node": "^26.6.4",
-    "eslint-config-cityssm": "^56.0.0",
+    "eslint-config-cityssm": "^56.1.0",
     "prettier-config-cityssm": "^2.2.0"
   },
   "engines": {
