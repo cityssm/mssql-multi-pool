@@ -57,8 +57,13 @@ export async function connect(
     await pool.connect()
 
     POOLS.set(poolKey, pool)
+
+    if (POOLS.size === 1) {
+      initializeShutdown()
+    }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
   return pool as mssqlTypes.ConnectionPool
 }
 
@@ -97,12 +102,16 @@ export function getPoolCount(): number {
  * Initialize shutdown.
  */
 
-debug('Initializing shutdown hooks.')
+function initializeShutdown(): void {
+  debug('Initializing shutdown hooks.')
 
-exitHook(() => {
-  debug('Running shutdown hooks.')
-  void releaseAll()
-})
+  exitHook(() => {
+    debug('Running shutdown hooks.')
+    void releaseAll()
+  })
+}
+
+initializeShutdown()
 
 /*
  * Exports

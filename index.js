@@ -34,7 +34,11 @@ export async function connect(config) {
         pool = new mssql.ConnectionPool(config);
         await pool.connect();
         POOLS.set(poolKey, pool);
+        if (POOLS.size === 1) {
+            initializeShutdown();
+        }
     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
     return pool;
 }
 /**
@@ -67,11 +71,14 @@ export function getPoolCount() {
 /**
  * Initialize shutdown.
  */
-debug('Initializing shutdown hooks.');
-exitHook(() => {
-    debug('Running shutdown hooks.');
-    void releaseAll();
-});
+function initializeShutdown() {
+    debug('Initializing shutdown hooks.');
+    exitHook(() => {
+        debug('Running shutdown hooks.');
+        void releaseAll();
+    });
+}
+initializeShutdown();
 /*
  * Exports
  */
