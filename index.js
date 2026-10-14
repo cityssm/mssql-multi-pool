@@ -78,7 +78,6 @@ function initializeShutdown() {
         void releaseAll();
     });
 }
-initializeShutdown();
 /*
  * Exports
  */

@@ -111,8 +111,6 @@ function initializeShutdown(): void {
   })
 }
 
-initializeShutdown()
-
 /*
  * Exports
  */
