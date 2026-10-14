@@ -17,6 +17,7 @@ const mssqlImport = driver === 'msnodesqlv8'
     : await import('mssql');
 const mssql = mssqlImport.default;
 const POOLS = new Map();
+let isExitHookInitialized = false;
 function getPoolKey(config) {
     return `${config.user ?? ''}@${config.server}/${config.options?.instanceName ?? ''};${config.database ?? ''}`;
 }
@@ -34,8 +35,10 @@ export async function connect(config) {
         pool = new mssql.ConnectionPool(config);
         await pool.connect();
         POOLS.set(poolKey, pool);
-        if (POOLS.size === 1) {
-            initializeShutdown();
+        if (!isExitHookInitialized) {
+            initializeExitHook();
+            // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+            isExitHookInitialized = true;
         }
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
@@ -71,7 +74,10 @@ export function getPoolCount() {
 /**
  * Initialize shutdown.
  */
-function initializeShutdown() {
+function initializeExitHook() {
+    if (isExitHookInitialized) {
+        return;
+    }
     debug('Initializing shutdown hooks.');
     exitHook(() => {
         debug('Running shutdown hooks.');

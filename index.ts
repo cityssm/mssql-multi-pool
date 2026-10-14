@@ -30,6 +30,8 @@ const mssql = mssqlImport.default
 
 const POOLS = new Map<string, mssqlTypes.ConnectionPool>()
 
+let isExitHookInitialized = false
+
 function getPoolKey(config: mssqlTypes.config): string {
   return `${config.user ?? ''}@${config.server}/${
     config.options?.instanceName ?? ''
@@ -58,8 +60,11 @@ export async function connect(
 
     POOLS.set(poolKey, pool)
 
-    if (POOLS.size === 1) {
-      initializeShutdown()
+    if (!isExitHookInitialized) {
+      initializeExitHook()
+
+      // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+      isExitHookInitialized = true
     }
   }
 
@@ -102,7 +107,11 @@ export function getPoolCount(): number {
  * Initialize shutdown.
  */
 
-function initializeShutdown(): void {
+function initializeExitHook(): void {
+  if (isExitHookInitialized) {
+    return
+  }
+
   debug('Initializing shutdown hooks.')
 
   exitHook(() => {
