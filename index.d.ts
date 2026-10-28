@@ -26,6 +26,7 @@ declare const _default: {
     driver: string;
     getPoolCount: typeof getPoolCount;
     releaseAll: typeof releaseAll;
+    DEBUG_NAMESPACE: string;
 };
 export default _default;
 export * as mssql from 'mssql';

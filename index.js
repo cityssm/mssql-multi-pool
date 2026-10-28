@@ -91,6 +91,7 @@ export default {
     connect,
     driver,
     getPoolCount,
-    releaseAll
+    releaseAll,
+    DEBUG_NAMESPACE
 };
 export * as mssql from 'mssql';
