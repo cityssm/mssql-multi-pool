@@ -1,13 +1,13 @@
 /* eslint-disable unicorn/no-top-level-side-effects */
 
+import { debuglog } from 'node:util'
+
 import hasPackage from '@cityssm/has-package'
-import Debug from 'debug'
 import exitHook from 'exit-hook'
 import type mssqlTypes from 'mssql'
 
 import { DEBUG_NAMESPACE } from './debug.config.js'
-
-const debug = Debug(`${DEBUG_NAMESPACE}:index`)
+const debug = debuglog(`${DEBUG_NAMESPACE}:index`)
 
 const hasSqlPackage = await hasPackage('msnodesqlv8')
 

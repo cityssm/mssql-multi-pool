@@ -30,8 +30,8 @@
     "index.*"
   ],
   "scripts": {
-    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test test/test.js",
-    "test": "node --test test/test.js"
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --env-file=\".dev.env\" --test test/test.js",
+    "test": "node --env-file=\".dev.env\" --test test/test.js"
   },
   "overrides": {
     "@azure/msal-node": "7.1.0"
@@ -39,12 +39,10 @@
   "dependencies": {
     "@cityssm/has-package": "^1.0.0",
     "@types/mssql": "^12.3.0",
-    "debug": "^4.4.3",
     "exit-hook": "^5.1.0",
     "mssql": "^12.7.13"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.13",
     "@types/node": "^26.6.5",
     "eslint-config-cityssm": "^58.2.0",
     "prettier-config-cityssm": "^2.2.0"
